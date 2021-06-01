@@ -15,6 +15,7 @@ class PersonController extends Controller
     public function index()
     {
         //get all people
+	return Person::all();
     }
 
     /**
@@ -26,6 +27,8 @@ class PersonController extends Controller
     public function store(Request $request)
     {
         //add person
+//	dd($request);
+	return Person::create($request->all());
     }
 
     /**
@@ -37,6 +40,7 @@ class PersonController extends Controller
     public function show(Person $person)
     {
         //show person
+	return Person::find($person);
     }
 
     /**
@@ -49,6 +53,15 @@ class PersonController extends Controller
     public function update(Request $request, Person $person)
     {
         //update person
+//	dd($person);
+//	dd($request);
+//	$process = Person::find($person);
+//	dd($process);
+	$person->update($request->all());
+	return $person;
+//	$process = Person::find($person);
+//	$process->update($request->all());
+//	return $process;
     }
 
     /**
@@ -60,5 +73,6 @@ class PersonController extends Controller
     public function destroy(Person $person)
     {
         //delete person
+	return Person::destroy($person);
     }
 }
