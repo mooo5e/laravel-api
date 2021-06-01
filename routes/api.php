@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Person;
+use App\Http\Controllers\PersonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/people', [PersonController::class, 'index']);
+Route::resource('people', PersonController::class);
+
 Route::get('/test', function(){
     return ['message' => 'hello!'];
+});
+
+Route::get('/add-person', function(){
+    $person = Person::create([
+	'firstName' => 'Vasiliy',
+	'lastName' => 'Pupkin'
+    ]);
+
+    return $person;
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

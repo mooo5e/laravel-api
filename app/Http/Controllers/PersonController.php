@@ -14,7 +14,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        //get all people
     }
 
     /**
@@ -25,7 +25,7 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //add person
     }
 
     /**
@@ -36,7 +36,7 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        //
+        //show person
     }
 
     /**
@@ -48,7 +48,7 @@ class PersonController extends Controller
      */
     public function update(Request $request, Person $person)
     {
-        //
+        //update person
     }
 
     /**
@@ -59,6 +59,6 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        //delete person
     }
 }
