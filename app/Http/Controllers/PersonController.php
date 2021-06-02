@@ -26,8 +26,14 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
+	//validate the data first
+	$request->validate([
+	    'firstName' => 'required',
+	    'lastName' => 'required'
+	]);
+
         //add person
-//	dd($request);
+	//dd($request);
 	return Person::create($request->all());
     }
 
@@ -37,10 +43,16 @@ class PersonController extends Controller
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
+    public function show($key)//(Person $person)
     {
         //show person
 	return Person::find($person);
+//	$target = Person::where('firstName', $key)->orWhere('lastName', $key)->get()->first();
+//	//dd($target);
+//	$success = (is_null($target) ? false : $target->delete());
+//	return [
+//	    'success' => $success,
+//	];
     }
 
     /**
@@ -70,9 +82,19 @@ class PersonController extends Controller
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Person $person)
+    public function destroy($key)//(Person $person)
     {
         //delete person
-	return Person::destroy($person);
+	//dd($person);
+	//dd($key);
+	//return Person::destroy($person);
+	//$success = Person::destroy($key);
+	//$target = Person::where('firstName', $key)->get()->first();
+	$target = Person::where('firstName', $key)->orWhere('lastName', $key)->get()->first();
+	//dd($target);
+	$success = (is_null($target) ? false : $target->delete());
+	return [
+	    'success' => $success,
+	];
     }
 }
