@@ -27,14 +27,29 @@ class PersonController extends Controller
     public function store(Request $request)
     {
 	//validate the data first
-	$request->validate([
-	    'firstName' => 'required',
-	    'lastName' => 'required'
-	]);
+	//$request->validate([
+	//    'key' => 'required|unique:App\Models\Person,firstName'
+	//]);
+//	if ($request->isJson())
+//	{
+//	    dd($request->all());
+//	}
+//	$a = array_keys($request->all());
+//	dd($a);
+//	$person = Person::create(
+	$arr=$request->all();
+	foreach($arr as $key => $val){
+	    
+	    Person::create([$key, $val]);
+	}
+//	);
+//	return $person;	
 
         //add person
 	//dd($request);
-	return Person::create($request->all());
+//	$key = $request->content->first_field;
+//	dd($key);
+	//return Person::fill($request->all());
     }
 
     /**
@@ -46,7 +61,7 @@ class PersonController extends Controller
     public function show($key)//(Person $person)
     {
         //show person
-	return Person::find($person);
+//	return Person::find($person);
 //	$target = Person::where('firstName', $key)->orWhere('lastName', $key)->get()->first();
 //	//dd($target);
 //	$success = (is_null($target) ? false : $target->delete());
