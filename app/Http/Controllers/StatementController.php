@@ -31,63 +31,30 @@ class StatementController extends Controller
     public function store(Request $request)
     {
         // add new statement
-//dd($request);
-        $arr=$request->all();
-//	dd(array_keys($arr)[0]);
-//dd($arr);
-//	$request->validate([
-//            'key' => 'required|unique:App\Models\Statemet,key'
-//        ]);
+        $req=$request->all();
 
-//	validate($request->[
-//            'key' => 'required|unique:statements,key'
-//        ]);
-
-
-
-
-//	$validator = Validator::make($request->all(), [
-//            'key' => 'required|unique:statements|min:1'
-//        ]);
-//dd($validator->getRules());//passes());
-        
-	$reply = [];//new Human;
-        foreach($arr as $key => $val){
-	    //validate the data first
-/*    	    $arr->validate([
-        	'key' => 'required|unique:App\Models\Person,firstName'
-    	    ]);
-*/
-//dd([$key, $val]);
-//	$all = DB::table('statements')->select('key')->get();
-//dd($all);
-//dd($key);
-//$all->each(function($item) {if ($item->key == $key) {return false;}});
-//dd($all->toArray());
-//	for 
+	//validate keys
+	$passed = [];
+	$failed = [];
+        foreach($req as $key => $val){
 	    $validator = Validator::make([$key], ['required|unique:statements,key|min:1']);
-//dd($all->has($key));
-//dd($validator->getRules());
-//dd($validator->passes());
-	    //if ($validator->passes()){
-    		$st = new Statement;
-        	$st->key = $key;
-        	$st->value = $val;
-//		$st->validate()
-//        	if ($st->save() == true){
-//		    st->success = "success";
 	    if ($validator->passes()){
-	    $st->save();
-		    array_push($reply, ["success" => "success", "statement" => $st]);
+		$passed[$key] = $val;
 	    }
 	    else {
-//		    st->success = "failed";
-		    array_push($reply, ["success" => "failed", "statement" => $st]);
-		}
-//	    };
-        }
-        return $reply;
+		$failed[$key] = $val;
+	    }
+	}
 
+	if ($failed) {
+	    return response()->json($failed, 400);
+	}
+	if ($passed){
+	    foreach($passed as $key => $val){
+		Statement::create(['key' => $key, 'value' => $val]);
+	    }
+	    return response()->json($passed, 202);
+	}
 	
     }
 
@@ -116,7 +83,6 @@ class StatementController extends Controller
 	    }
 	}
 
-	//if found non-existing keys in request -> return error
 	if ($failed) {
 	    $reply = [];
 	    foreach($failed as $key){
@@ -124,7 +90,6 @@ class StatementController extends Controller
 	    };
 	    return $reply;
 	}
-	//else -> return key:value json
 	else {
 	    return $all->whereIn('key', $passed)->pluck('value','key');
 	}
@@ -139,7 +104,6 @@ class StatementController extends Controller
     public function update(Request $request)
     {
         $req=$request->all();
-	$reply = [];
 
 	//validate keys
 	$passed = [];
@@ -153,16 +117,16 @@ class StatementController extends Controller
 		$failed[$key] = $val;
 	    }
 	}
+
+	if ($failed) {
+	    return response()->json($failed, 400);
+	}
 	if ($passed){
 	    foreach($passed as $key => $val){
 		Statement::where('key', $key)->update(['value' => $val]);
 	    }
-	    $reply["passed"] = $passed;
+	    return response()->json($passed, 202);
 	}
-	if ($failed) {
-	    $reply["failed"] = $failed;
-	}
-	return $reply;
     }
 
     /**
@@ -190,15 +154,16 @@ class StatementController extends Controller
 	    }
 	}
 
+	if ($failed) {
+            return response()->json($failed, 400);
+	}
 	if ($passed){
 	    foreach($passed as $key => $val){
 		Statement::where('key', $key)->delete();
 	    }
-	    $reply["deleted"] = $passed;
+            return response()->json($passed, 202);
 	}
-	if ($failed) {
-	    $reply["not found"] = $failed;
-	}
+
 	return $reply;
     }
 }
