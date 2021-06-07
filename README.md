@@ -1,10 +1,11 @@
 ## Statements API
-
-- |  api/statements/add     | POST     |
-- |  api/statements/delete  | POST     |
-- |  api/statements/edit    | POST     |
-- |  api/statements/show    | POST     |
-- |  api/statements/all     | GET|HEAD |
+URL|Method
+---|---
+  api/statements/add     | POST     
+  api/statements/delete  | POST     
+  api/statements/edit    | POST     
+  api/statements/show    | POST     
+  api/statements/all     | GET|HEAD 
 
 
 ##Tested on http://vm3.westeurotele.com:9090/laravel-api/public/
