@@ -8,9 +8,9 @@ URL|Method
   api/statements/all     | GET|HEAD 
 
 
-##Tested on http://vm3.westeurotele.com:9090/laravel-api/public/
+###Tested on http://vm3.westeurotele.com:9090/laravel-api/public/
 
-#Usage:
+###Usage:
 - add JSON example ( POST /api/statements/add):
 _
 {
@@ -42,6 +42,6 @@ _
 }
 *
 
-#get all key -> value pairs:
+###get all key -> value pairs:
 Make a GET to /api/statements/all .
 
