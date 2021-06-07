@@ -14,15 +14,16 @@ URL|Method
 ```json
 {
   "firstName": "Carl",
-  "lastName": "Johnson"
+  "lastName": "Johnson",
+  "color": "green"
 }
 ```
 
 - **delete** JSON example (POST /api/statements/delete):
 ```json
 {
-  "color": "",
-  "pet": ""
+  "lastName": "",
+  "color": ""
 }
 ```
 
