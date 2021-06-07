@@ -38,7 +38,8 @@ URL|Method
 ```json
 {
   "firstName": "",
-  "can swim": ""
+  "can swim": "",
+  "likesFlowers": ""
 }
 ```
 
