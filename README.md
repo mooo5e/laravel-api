@@ -12,12 +12,12 @@ URL|Method
 
 #Usage:
 - add JSON example ( POST /api/statements/add):
-*
+_
 {
   "firstName": "Carl",
   "lastName": "Johnson"
 }
-*
+_
 
 - delete JSON example (POST /api/statements/delete):
 *
