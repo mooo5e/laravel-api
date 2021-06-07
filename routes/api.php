@@ -28,7 +28,7 @@ use App\Http\Controllers\StatementController;
 Route::get('/statements/all', [StatementController::class, 'index']);  //not in task list
 Route::post('/statements/add', [StatementController::class, 'store']);
 Route::post('/statements/edit', [StatementController::class, 'update']);
-Route::post('/statements/show', [StatementController::class, 'show'])->middleware('auth.basic');
+Route::post('/statements/show', [StatementController::class, 'show']);//->middleware('auth.basic');
 Route::post('/statements/delete', [StatementController::class, 'destroy']);
 
 
