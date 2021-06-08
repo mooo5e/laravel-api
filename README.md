@@ -7,6 +7,10 @@ URL|Method
   api/statements/show    | POST
   api/statements/all     | GET|HEAD
 
+All requests require basic authentication.
+**Login:** test
+**Password:** password
+
 ### Tested [here](http://vm3.westeurotele.com:9090/laravel-api/public/).
 
 ### Usage:

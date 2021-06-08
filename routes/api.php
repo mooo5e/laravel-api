@@ -25,11 +25,11 @@ use App\Http\Controllers\StatementController;
 //Route::resource('humans', HumanController::class);
 //Route::put('/humans', [HumanController::class, 'update']);
 
-Route::get('/statements/all', [StatementController::class, 'index']);  //not in task list
-Route::post('/statements/add', [StatementController::class, 'store']);
-Route::post('/statements/edit', [StatementController::class, 'update']);
-Route::post('/statements/show', [StatementController::class, 'show']);//->middleware('auth.basic');
-Route::post('/statements/delete', [StatementController::class, 'destroy']);
+Route::get('/statements/all', [StatementController::class, 'index'])->middleware('auth');  //not in task list
+Route::post('/statements/add', [StatementController::class, 'store'])->middleware('auth');
+Route::post('/statements/edit', [StatementController::class, 'update'])->middleware('auth');
+Route::post('/statements/show', [StatementController::class, 'show'])->middleware('auth');
+Route::post('/statements/delete', [StatementController::class, 'destroy'])->middleware('auth');
 
 
 /*
