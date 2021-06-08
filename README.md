@@ -8,6 +8,7 @@ URL|Method
   api/statements/all     | GET|HEAD
 
 All requests require basic authentication.
+
 **Login:** test
 **Password:** password
 
